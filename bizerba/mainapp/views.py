@@ -4,6 +4,17 @@ from .serializers import JobApplicationSerializer
 from .models import *
 
 
-class JobAPIView(generics.ListAPIView):
+class JobAPIView(generics.ListCreateAPIView):
     queryset = JobApplication.objects.all()
     serializer_class = JobApplicationSerializer
+
+
+class JobAPIUpdate(generics.UpdateAPIView):
+    queryset = JobApplication.objects.all()
+    serializer_class = JobApplicationSerializer
+
+
+class JobAPIDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = JobApplication.objects.all()
+    serializer_class = JobApplicationSerializer
+
