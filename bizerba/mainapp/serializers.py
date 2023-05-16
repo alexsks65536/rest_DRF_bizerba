@@ -6,4 +6,4 @@ from mainapp.models import JobApplication
 class JobApplicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = JobApplication
-        fields = ('number', 'defect')
+        fields = "__all__"
