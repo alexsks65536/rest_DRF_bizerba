@@ -6,15 +6,15 @@ from rest_framework import routers
 from mainapp.views import JobViewSet, SparePartViewSet, CustomerViewSet, DepartmentViewSet, ScaleModelViewSet, \
     ScaleViewSet, ReceivingViewSet, InstallationViewSet
 
-router = routers.DefaultRouter()
+router = routers.DefaultRouter()  # инициализация роутера
 router.register(r'job', JobViewSet)  # заявки в работу
 router.register(r'spare', SparePartViewSet)  # запчасти с артикулами
-router.register(r'customer', CustomerViewSet)
-router.register(r'department', DepartmentViewSet)
-router.register(r'scalemodel', ScaleModelViewSet)
-router.register(r'scale', ScaleViewSet)
-router.register(r'receiving', ReceivingViewSet)
-router.register(r'installation', InstallationViewSet)
+router.register(r'customer', CustomerViewSet)  # заказчики
+router.register(r'department', DepartmentViewSet)  # Отделы
+router.register(r'scalemodel', ScaleModelViewSet)  # Модели весов
+router.register(r'scale', ScaleViewSet)  # Список весов
+router.register(r'receiving', ReceivingViewSet)  # Приход ЗИП
+router.register(r'installation', InstallationViewSet)  # Установка ЗИП
 
 
 urlpatterns = [
