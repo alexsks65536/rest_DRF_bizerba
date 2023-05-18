@@ -1,25 +1,28 @@
-"""
-URL configuration for bizerba project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
 
-from mainapp.views import JobAPIView
+# from mainapp.views import JobAPIView, JobAPIUpdate, JobAPIDetailView, SparePartAPIDetailView, SparePartAPIView
+from mainapp.views import JobViewSet, SparePartViewSet, CustomerViewSet, DepartmentViewSet, ScaleModelViewSet, \
+    ScaleViewSet, ReceivingViewSet, InstallationViewSet
+
+router = routers.DefaultRouter()  # инициализация роутера
+router.register(r'job', JobViewSet)  # заявки в работу
+router.register(r'spare', SparePartViewSet)  # запчасти с артикулами
+router.register(r'customer', CustomerViewSet)  # заказчики
+router.register(r'department', DepartmentViewSet)  # Отделы
+router.register(r'scalemodel', ScaleModelViewSet)  # Модели весов
+router.register(r'scale', ScaleViewSet)  # Список весов
+router.register(r'receiving', ReceivingViewSet)  # Приход ЗИП
+router.register(r'installation', InstallationViewSet)  # Установка ЗИП
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/job/', JobAPIView.as_view())
+    path('api/v1/', include(router.urls)),
+    # path('api/v1/job/', JobAPIView.as_view()),  # заявки в работу
+    # path('api/v1/job/<int:pk>', JobAPIUpdate.as_view()),  # заявки в работу
+    # path('api/v1/jobdetail/<int:pk>', JobAPIDetailView.as_view()),  # заявки в работу
+    # path('api/v1/sparepart/', SparePartAPIView.as_view()),  # запчасти с артикулами
+    # path('api/v1/sparedetail/<int:pk>', SparePartAPIDetailView.as_view()),  # запчасти с артикулами
 ]
